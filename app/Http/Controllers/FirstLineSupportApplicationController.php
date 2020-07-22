@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\LeadApproval;
+use App\FirstLineSupportApplication;
 use Illuminate\Http\Request;
 
-class LeadApprovalController extends Controller
+class FirstLineSupportApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class LeadApprovalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\LeadApproval  $leadApproval
+     * @param  \App\FirstLineSupportApplication  $firstLineSupportApplication
      * @return \Illuminate\Http\Response
      */
-    public function show(LeadApproval $leadApproval)
+    public function show(FirstLineSupportApplication $firstLineSupportApplication)
     {
         //
     }
@@ -52,10 +52,10 @@ class LeadApprovalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\LeadApproval  $leadApproval
+     * @param  \App\FirstLineSupportApplication  $firstLineSupportApplication
      * @return \Illuminate\Http\Response
      */
-    public function edit(LeadApproval $leadApproval)
+    public function edit(FirstLineSupportApplication $firstLineSupportApplication)
     {
         //
     }
@@ -64,10 +64,10 @@ class LeadApprovalController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\LeadApproval  $leadApproval
+     * @param  \App\FirstLineSupportApplication  $firstLineSupportApplication
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LeadApproval $leadApproval)
+    public function update(Request $request, FirstLineSupportApplication $firstLineSupportApplication)
     {
         //
     }
@@ -75,10 +75,10 @@ class LeadApprovalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\LeadApproval  $leadApproval
+     * @param  \App\FirstLineSupportApplication  $firstLineSupportApplication
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LeadApproval $leadApproval)
+    public function destroy(FirstLineSupportApplication $firstLineSupportApplication)
     {
         //
     }

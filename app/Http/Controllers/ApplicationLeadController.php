@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\FirstLineSupport;
+use App\ApplicationLead;
 use Illuminate\Http\Request;
 
-class FirstLineSupportController extends Controller
+class ApplicationLeadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class FirstLineSupportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\FirstLineSupport  $firstLineSupport
+     * @param  \App\ApplicationLead  $applicationLead
      * @return \Illuminate\Http\Response
      */
-    public function show(FirstLineSupport $firstLineSupport)
+    public function show(ApplicationLead $applicationLead)
     {
         //
     }
@@ -52,10 +52,10 @@ class FirstLineSupportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\FirstLineSupport  $firstLineSupport
+     * @param  \App\ApplicationLead  $applicationLead
      * @return \Illuminate\Http\Response
      */
-    public function edit(FirstLineSupport $firstLineSupport)
+    public function edit(ApplicationLead $applicationLead)
     {
         //
     }
@@ -64,10 +64,10 @@ class FirstLineSupportController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\FirstLineSupport  $firstLineSupport
+     * @param  \App\ApplicationLead  $applicationLead
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FirstLineSupport $firstLineSupport)
+    public function update(Request $request, ApplicationLead $applicationLead)
     {
         //
     }
@@ -75,10 +75,10 @@ class FirstLineSupportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\FirstLineSupport  $firstLineSupport
+     * @param  \App\ApplicationLead  $applicationLead
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FirstLineSupport $firstLineSupport)
+    public function destroy(ApplicationLead $applicationLead)
     {
         //
     }
