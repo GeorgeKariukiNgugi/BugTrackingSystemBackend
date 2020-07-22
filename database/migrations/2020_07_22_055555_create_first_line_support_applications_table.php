@@ -14,7 +14,18 @@ class CreateFirstLineSupportApplicationsTable extends Migration
     public function up()
     {
         Schema::create('first_line_support_applications', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('firstLineSupportId');
+
+            // ! adding the relationship to the users table. 
+            $table->foreign('firstLineSupportId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->bigInteger('applicationId')->unsigned();
+
+            // ! adding the relationship to the applications table. 
+            $table->foreign('applicationId')->references('id')->on('applications')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

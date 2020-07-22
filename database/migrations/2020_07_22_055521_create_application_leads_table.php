@@ -14,7 +14,14 @@ class CreateApplicationLeadsTable extends Migration
     public function up()
     {
         Schema::create('application_leads', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('userId');
+
+            // ! adding the relationship to the users table. 
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->integer('typeOfLead');
             $table->timestamps();
         });
     }
