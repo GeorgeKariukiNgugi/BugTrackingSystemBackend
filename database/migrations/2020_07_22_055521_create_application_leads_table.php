@@ -21,6 +21,11 @@ class CreateApplicationLeadsTable extends Migration
             // ! adding the relationship to the users table. 
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 
+            $table->bigInteger('applicationId')->unsigned();
+
+            // ! adding the relationship to the applications table. 
+            $table->foreign('applicationId')->references('id')->on('applications')->onDelete('cascade')->onUpdate('cascade');
+
             $table->integer('typeOfLead');
             $table->timestamps();
         });
