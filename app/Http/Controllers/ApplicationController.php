@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Application;
 use Illuminate\Http\Request;
+use App\Requests\addingAnApplication;
+use App\Requests\UpdatingAnApplication;
 
 class ApplicationController extends Controller
 {
@@ -14,7 +16,12 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        //
+        //! getting a single application and its details. 
+
+        $applications = Application::all();
+
+        return response()->json($applications, 200);
+
     }
 
     /**
@@ -33,9 +40,21 @@ class ApplicationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(addingAnApplication $request)
     {
-        //
+        //! adding an application. 
+
+        $newApplication = new Application();
+        $newApplication->name=$request->name;
+        $newApplication->commencingDate=$request->commencingDate;
+        $newApplication->currentVersion=$request->currentVersion;
+        $newApplication->nextUpdate=$request->nextUpdate;
+
+        $newApplication->save();
+
+        return response()->json('Successfully Added New Application.', 200); 
+
+
     }
 
     /**
@@ -67,9 +86,11 @@ class ApplicationController extends Controller
      * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Application $application)
+    public function update(UpdatingAnApplication $request, Application $application)
     {
         //
+        $application->update($request->all());
+        return response('Successfully Updated Application.', 200);
     }
 
     /**
@@ -80,6 +101,9 @@ class ApplicationController extends Controller
      */
     public function destroy(Application $application)
     {
-        //
+        $application->delete();
+        return response(
+            'Successfully Deleted Application.', 200
+        );
     }
 }
