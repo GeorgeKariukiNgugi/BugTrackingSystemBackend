@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\Resource;
 
-class FirstLineSupportResourceCollection extends ResourceCollection
+class FirstLineSupportResourceCollection extends Resource
 {
     /**
      * Transform the resource collection into an array.
@@ -14,6 +14,12 @@ class FirstLineSupportResourceCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        
+        return [
+            'id'=>$this->id,
+            'name'=>$this->bugBelongsToUser->name,
+            'application'=> $this->bugBelongsToApplication->name
+        ];
+
     }
 }

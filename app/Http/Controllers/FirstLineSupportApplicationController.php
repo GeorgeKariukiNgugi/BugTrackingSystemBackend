@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\FirstLineSupportApplication;
 use Illuminate\Http\Request;
+use App\Http\Resources\FirstLineSupportResource;
+use App\Http\Resources\FirstLineSupportResourceCollection;
+use App\Http\Requests\UpdatingFirstLineSupport;
+use App\Http\Requests\AddingFirstLineSupport;
 
 class FirstLineSupportApplicationController extends Controller
 {
@@ -14,7 +18,9 @@ class FirstLineSupportApplicationController extends Controller
      */
     public function index()
     {
-        //
+        // ! getting all the first line support system
+        return FirstLineSupportResourceCollection::collection(FirstLineSupportApplication::all());
+
     }
 
     /**
@@ -33,9 +39,21 @@ class FirstLineSupportApplicationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddingFirstLineSupport $request)
     {
-        //
+        //! storing the application first line support.         
+        $newFirstLineSupport = new FirstLineSupportApplication();
+        $newFirstLineSupport->firstLineSupportId= $request->firstLineSupportId;
+        $newFirstLineSupport->applicationId= $request->applicationId;
+
+        $newFirstLineSupport->save();
+
+        // ! adding the role of the firstLine Support Engineer. 
+
+        $newFirstLineSupport->bugBelongsToUser->assignRole('firstLineSupport');
+
+        return response('The new firstLine support  engineer has been added successfully',200);
+
     }
 
     /**
@@ -44,9 +62,13 @@ class FirstLineSupportApplicationController extends Controller
      * @param  \App\FirstLineSupportApplication  $firstLineSupportApplication
      * @return \Illuminate\Http\Response
      */
-    public function show(FirstLineSupportApplication $firstLineSupportApplication)
+    public function show( $firstLineSupportApplication)
     {
-        //
+        //! getting a single first line support individual. 
+        $firstLineSupportApplication = FirstLineSupportApplication::where('id',$firstLineSupportApplication)->first();
+        return new FirstLineSupportResource($firstLineSupportApplication);
+
+
     }
 
     /**
@@ -67,9 +89,15 @@ class FirstLineSupportApplicationController extends Controller
      * @param  \App\FirstLineSupportApplication  $firstLineSupportApplication
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FirstLineSupportApplication $firstLineSupportApplication)
+    public function update(UpdatingFirstLineSupport $request, $firstLineSupportApplication)
     {
         //
+        
+        $firstLineSupportApplication = FirstLineSupportApplication::where('id',$firstLineSupportApplication)->first();
+        
+        $firstLineSupportApplication->update($request->all());
+
+        return response('Update Successful.',200);
     }
 
     /**
@@ -78,8 +106,11 @@ class FirstLineSupportApplicationController extends Controller
      * @param  \App\FirstLineSupportApplication  $firstLineSupportApplication
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FirstLineSupportApplication $firstLineSupportApplication)
+    public function destroy($firstLineSupportApplication)
     {
         //
+        $firstLineSupportApplication = FirstLineSupportApplication::where('id',$firstLineSupportApplication)->first();
+        $firstLineSupportApplication->delete();
+        return response('Deleting Successful',200);
     }
 }

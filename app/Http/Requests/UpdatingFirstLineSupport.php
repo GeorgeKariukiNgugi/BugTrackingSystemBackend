@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatingAnApplication extends FormRequest
+class UpdatingFirstLineSupport extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class UpdatingAnApplication extends FormRequest
     public function rules()
     {
         return [
-            
-            'commencingDate' =>'date',            
-            'nextUpdate'=>'date'
+            'firstLineSupportId'=> 'integer',
+            'applicationId'=> 'integer'
         ];
     }
 }

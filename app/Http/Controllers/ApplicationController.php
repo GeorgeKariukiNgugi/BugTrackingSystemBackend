@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Application;
 use Illuminate\Http\Request;
-use App\Requests\addingAnApplication;
-use App\Requests\UpdatingAnApplication;
+use App\Http\Requests\addingAnApplication;
+use App\Http\Requests\UpdatingAnApplication;
 
 class ApplicationController extends Controller
 {
@@ -19,8 +19,7 @@ class ApplicationController extends Controller
         //! getting a single application and its details. 
 
         $applications = Application::all();
-
-        return response()->json($applications, 200);
+        return response($applications, 200);
 
     }
 
@@ -52,7 +51,7 @@ class ApplicationController extends Controller
 
         $newApplication->save();
 
-        return response()->json('Successfully Added New Application.', 200); 
+        return response('Successfully Added New Application.', 200); 
 
 
     }
@@ -66,6 +65,7 @@ class ApplicationController extends Controller
     public function show(Application $application)
     {
         //
+        return response($application, 200);
     }
 
     /**
@@ -86,10 +86,9 @@ class ApplicationController extends Controller
      * @param  \App\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatingAnApplication $request, Application $application)
-    {
-        //
-        $application->update($request->all());
+    public function update(Request $request, Application $application)
+    {           
+        $application->update($request->all());               
         return response('Successfully Updated Application.', 200);
     }
 

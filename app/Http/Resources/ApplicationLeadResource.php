@@ -14,6 +14,20 @@ class ApplicationLeadResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $type = null;
+        if ($this->typeOfLead == 1) {
+            # code...
+            $type = 'Senior Lead';
+        } else {
+            # code...
+            $type = 'Minor Lead';
+        }
+        
+        return [
+            'id'=>$this->id,
+            'name'=>$this->applicationLeadIsAUser->name,
+            'application'=> $this->applicationLeadBelongsToApplication->name,
+            'typeOfLead'=> $type,
+        ];
     }
 }

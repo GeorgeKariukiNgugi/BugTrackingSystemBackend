@@ -18,6 +18,8 @@ use Illuminate\Http\Request;
 // });
 Route::middleware('auth:api')->group( function () {
     Route::apiResource('/applications','ApplicationController');
+    Route::apiResource('/firstLineSupport','FirstLineSupportApplicationController');
+    Route::apiResource('/applicationLead','ApplicationLeadController');
 });
 
 Route::post('/register', 'Api\AuthController@register');
