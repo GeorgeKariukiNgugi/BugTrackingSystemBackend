@@ -27,7 +27,7 @@ class AuthController extends Controller
             
             // ! return the errors that have been gotten from posting the data.
 
-            return response($validator->errors(),200);
+            return response($validator->errors(),206);
 
         }
         
@@ -60,12 +60,12 @@ class AuthController extends Controller
             
             // ! return the errors that have been gotten from posting the data.
 
-            return response($loginData->errors(),422);
+            return response($loginData->errors(),206);
 
         }
         $credentials = $request->only('email', 'password');
         if (!auth()->attempt($credentials)) {
-            return response(['message' => 'Invalid Credentials']);
+            return response(['message' => 'Invalid Credentials'],200);
         }
 
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
