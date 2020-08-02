@@ -27,7 +27,7 @@ class AuthController extends Controller
             
             // ! return the errors that have been gotten from posting the data.
 
-            return response($validator->errors(),422);
+            return response($validator->errors(),200);
 
         }
         
