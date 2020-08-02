@@ -65,12 +65,12 @@ class AuthController extends Controller
         }
         $credentials = $request->only('email', 'password');
         if (!auth()->attempt($credentials)) {
-            return response(['message' => 'Invalid Credentials'],200);
+            return response(['message' => 'Invalid Credentials'],206);
         }
 
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
 
-        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+        return response(['user' => auth()->user(), 'access_token' => $accessToken],200);
 
     }
 }
