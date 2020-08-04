@@ -74,7 +74,8 @@ class AuthController extends Controller
         $roles = Auth::user()->getRoleNames();
         if (count($roles) == 0) {
             # code...
-            $roles = 'user';
+            $roles = [];
+            array_push($roles,'user');
         }
 
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
