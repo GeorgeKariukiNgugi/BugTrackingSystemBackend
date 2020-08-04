@@ -68,9 +68,17 @@ class AuthController extends Controller
             return response(['message' => 'Invalid Credentials'],206);
         }
 
+        // ! getting the role assigned to the user. 
+
+        $roles = Auth::user()->getRoleNames();
+        if (count($roles) == 0) {
+            # code...
+            $roles = 'user';
+        }
+
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
 
-        return response(['user' => auth()->user(), 'access_token' => $accessToken],200);
+        return response(['user' => auth()->user(), 'access_token' => $accessToken,'role'=>$roles],200);
 
     }
 }
